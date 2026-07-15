@@ -1,0 +1,10 @@
+{
+  "name": "mysafar-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install": "cd server && npm install && cd ../client && npm install",
+    "build": "cd client && npm run build",
+    "dev": "npm run dev --prefix client & npm run dev --prefix server"
+  }
+}
