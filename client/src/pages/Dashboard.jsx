@@ -65,6 +65,7 @@ function OpportunityRow({ opp, onDelete, onUpdate, onDragStart }) {
       title: opp.title,
       description: opp.description,
       status: opp.status,
+      type: opp.type || 'competition',
       deadline: opp.deadline ? new Date(opp.deadline).toISOString().split('T')[0] : '',
       resumeUsed: opp.resumeUsed || 'Default',
       referralName: opp.referralName || '',
@@ -89,19 +90,20 @@ function OpportunityRow({ opp, onDelete, onUpdate, onDragStart }) {
           <div className="edit-row">
             <input
               type="text"
-              className="edit-input"
+              className="edit-input flex-2"
               value={editValues.title}
               onChange={e => setEditValues({ ...editValues, title: e.target.value })}
               placeholder="Title"
             />
             <input
               type="url"
-              className="edit-input"
+              className="edit-input flex-1"
               value={editValues.sourceUrl}
               onChange={e => setEditValues({ ...editValues, sourceUrl: e.target.value })}
               placeholder="Link URL"
             />
           </div>
+          
           <textarea
             className="edit-input edit-textarea"
             value={editValues.description}
@@ -109,7 +111,17 @@ function OpportunityRow({ opp, onDelete, onUpdate, onDragStart }) {
             placeholder="Description / Notes"
             rows={2}
           />
+          
           <div className="edit-row">
+            <select
+              className="edit-input"
+              value={editValues.type}
+              onChange={e => setEditValues({ ...editValues, type: e.target.value })}
+            >
+              <option value="competition">Competition</option>
+              <option value="internship">Internship</option>
+            </select>
+            
             <select
               className="edit-input"
               value={editValues.status}
@@ -129,29 +141,34 @@ function OpportunityRow({ opp, onDelete, onUpdate, onDragStart }) {
                 <option value="done">Done</option>
               </optgroup>
             </select>
+            
             <input
               type="date"
               className="edit-input"
               value={editValues.deadline}
               onChange={e => setEditValues({ ...editValues, deadline: e.target.value })}
             />
+          </div>
+
+          <div className="edit-row">
             <input
               type="text"
               className="edit-input"
               value={editValues.resumeUsed}
               onChange={e => setEditValues({ ...editValues, resumeUsed: e.target.value })}
-              placeholder="Resume version"
+              placeholder="Resume version (e.g. Default)"
             />
+            {editValues.status === 'applied thru referral' && (
+              <input
+                type="text"
+                className="edit-input"
+                value={editValues.referralName}
+                onChange={e => setEditValues({ ...editValues, referralName: e.target.value })}
+                placeholder="Referral name"
+              />
+            )}
           </div>
-          {editValues.status === 'applied thru referral' && (
-            <input
-              type="text"
-              className="edit-input"
-              value={editValues.referralName}
-              onChange={e => setEditValues({ ...editValues, referralName: e.target.value })}
-              placeholder="Referral name"
-            />
-          )}
+          
           <div className="edit-actions">
             <button className="btn btn-sm btn-secondary" onClick={handleCancelEdit}>Cancel</button>
             <button className="btn btn-sm btn-primary" onClick={handleSaveEdit}>Save</button>

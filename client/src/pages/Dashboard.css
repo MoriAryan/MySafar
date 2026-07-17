@@ -457,7 +457,11 @@
   font-size: 0.8125rem;
   font-family: inherit;
   transition: border-color 0.15s ease;
+  min-width: 0;
 }
+
+.edit-input.flex-1 { flex: 1; }
+.edit-input.flex-2 { flex: 2; }
 
 .edit-input:focus {
   outline: none;
