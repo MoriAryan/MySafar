@@ -27,6 +27,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 // Routes
+app.use('/api/auth', require('./routes/auth'));
 app.use('/api/opportunities', require('./routes/opportunities'));
 app.use('/api/profile', require('./routes/profile'));
 app.use('/api/resumes', require('./routes/resumes'));

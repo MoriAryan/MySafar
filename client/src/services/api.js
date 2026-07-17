@@ -13,10 +13,24 @@ api.interceptors.request.use((config) => {
   return config;
 });
 
-// Interceptor to unwrap Axios response
+// Interceptor to unwrap Axios response and handle sliding session
 api.interceptors.response.use(
-  (response) => response.data,
-  (error) => Promise.reject(error)
+  (response) => {
+    // Sliding window logic: If backend issued a fresh token, save it silently
+    const newToken = response.headers['x-new-token'];
+    if (newToken) {
+      localStorage.setItem('mysafar_token', newToken);
+    }
+    return response.data;
+  },
+  (error) => {
+    // Automatically log out if the custom token expires
+    if (error.response && error.response.status === 401) {
+      localStorage.removeItem('mysafar_token');
+      window.location.href = '/login';
+    }
+    return Promise.reject(error);
+  }
 );
 
 // Opportunities

@@ -67,3 +67,21 @@
   font-size: 0.75rem;
   color: var(--text-tertiary);
 }
+
+.login-error {
+  background: rgba(248, 113, 113, 0.1);
+  color: #f87171;
+  border: 1px solid rgba(248, 113, 113, 0.2);
+  padding: 0.75rem;
+  border-radius: var(--radius-md);
+  font-size: 0.8125rem;
+  margin-top: -0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.login-loading {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  padding: 0.5rem;
+}
