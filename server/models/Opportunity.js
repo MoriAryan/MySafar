@@ -7,7 +7,7 @@ const opportunitySchema = new mongoose.Schema({
   description: { type: String, default: '' },
   type: {
     type: String,
-    enum: ['internship', 'competition'],
+    enum: ['internship', 'competition', 'oncampus'],
     default: 'competition'
   },
   status: {

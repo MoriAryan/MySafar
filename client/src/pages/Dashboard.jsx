@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import {
   Trophy, Briefcase, Clock, CheckCircle2,
   Calendar, ExternalLink, Trash2, Edit3,
-  Award, Send, FileText, User2
+  Award, Send, FileText, User2, GraduationCap
 } from 'lucide-react';
 import { getOpportunities, deleteOpportunity, moveOpportunity, updateOpportunity } from '../services/api';
 import './Dashboard.css';
@@ -120,6 +120,7 @@ function OpportunityRow({ opp, onDelete, onUpdate, onDragStart }) {
             >
               <option value="competition">Competition</option>
               <option value="internship">Internship</option>
+              <option value="oncampus">On-Campus</option>
             </select>
             
             <select
@@ -449,9 +450,16 @@ export default function Dashboard() {
           <Briefcase size={16} />
           <span>Internships</span>
         </button>
+        <button
+          className={`tab-btn ${activeTab === 'oncampus' ? 'tab-active' : ''}`}
+          onClick={() => setActiveTab('oncampus')}
+        >
+          <GraduationCap size={16} />
+          <span>On-Campus</span>
+        </button>
         <div
           className="tab-indicator"
-          style={{ transform: activeTab === 'internship' ? 'translateX(100%)' : 'translateX(0)' }}
+          style={{ transform: activeTab === 'oncampus' ? 'translateX(200%)' : activeTab === 'internship' ? 'translateX(100%)' : 'translateX(0)' }}
         />
       </div>
 
@@ -481,7 +489,7 @@ export default function Dashboard() {
       {!loading && totalCount === 0 && (
         <div className="empty-dashboard">
           <Award size={48} />
-          <h3>No {activeTab === 'internship' ? 'internships' : 'competitions'} tracked yet</h3>
+          <h3>No {activeTab === 'internship' ? 'internships' : activeTab === 'oncampus' ? 'on-campus internships' : 'competitions'} tracked yet</h3>
           <p>Click <strong>"Track New"</strong> in the sidebar to add your first entry</p>
         </div>
       )}

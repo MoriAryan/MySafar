@@ -69,7 +69,8 @@ router.get('/stats', auth, async (req, res) => {
     // Build a structured response
     const stats = {
       competition: { yet_to_apply: 0, applied: 0, completed: 0, total: 0 },
-      internship: { yet_to_apply: 0, applied: 0, completed: 0, total: 0 }
+      internship: { yet_to_apply: 0, applied: 0, completed: 0, total: 0 },
+      oncampus: { yet_to_apply: 0, applied: 0, completed: 0, total: 0 }
     };
 
     results.forEach(r => {

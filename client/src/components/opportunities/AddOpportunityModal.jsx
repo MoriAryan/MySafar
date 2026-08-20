@@ -5,7 +5,8 @@ import './AddOpportunityModal.css';
 
 const TYPE_OPTIONS = [
   { value: 'competition', label: 'Competition' },
-  { value: 'internship', label: 'Internship' }
+  { value: 'internship', label: 'Internship' },
+  { value: 'oncampus', label: 'On-Campus' }
 ];
 
 const STATUS_GROUPS = [

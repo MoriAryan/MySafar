@@ -96,7 +96,7 @@
   position: absolute;
   top: 4px;
   left: 4px;
-  width: calc(50% - 4px);
+  width: calc(33.333% - 4px);
   height: calc(100% - 8px);
   background: var(--bg-tertiary);
   border-radius: var(--radius-md);
@@ -564,7 +564,7 @@
   }
 
   .tab-indicator {
-    width: calc(50% - 4px);
+    width: calc(33.333% - 4px);
   }
 
   .edit-row {
